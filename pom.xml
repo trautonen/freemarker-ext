@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <artifactId>eluder-parent</artifactId>
+    <groupId>org.eluder</groupId>
+    <version>5</version>
+    <relativePath></relativePath>
+  </parent>
+
+  <groupId>org.eluder.freemarker</groupId>
+  <artifactId>freemarker-ext</artifactId>
+  <version>0.9-SNAPSHOT</version>
+
+  <name>Freemarker Extensions</name>
+  <description>Extensions for Freemarker template engine.</description>
+  <url>https://github.com/trautonen/freemarker-ext</url>
+  <inceptionYear>2014</inceptionYear>
+
+  <developers>
+    <developer>
+      <name>Tapio Rautonen</name>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>The MIT License (MIT)</name>
+      <url>http://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git://github.com/trautonen/freemarker-ext.git</connection>
+    <developerConnection>scm:git:git://github.com/trautonen/freemarker-ext.git</developerConnection>
+    <url>https://github.com/trautonen/freemarker-ext</url>
+  </scm>
+
+  <properties>
+    <freemarker.version>2.3.20</freemarker.version>
+    <guava.version>17.0</guava.version>
+    <spring-webmvc.version>4.0.3.RELEASE</spring-webmvc.version>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>${freemarker.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring-webmvc.version}</version>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+
+</project>
