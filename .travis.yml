@@ -1,0 +1,17 @@
+language: java
+
+jdk:
+  - oraclejdk7
+
+env:
+  global:
+    - secure: "CqRo1xiW1lW1svSLl2/qgEg8digXYZ1kuZwnawCB6r9+YsOwckD2RJk61VQuvmNBO/0bPhK/hCZFtwGpNURmcRxcpM+4uR5P4JzVvvMyCQAW3GnpOo3PJgrFRGMqGbGcjXiDq8pjkA3ZyUFoAtpj2X/9Z6cO+kkpPXS4DkCSimA="
+    - secure: "cp9K9BZIY7IAciUJliV+miQbthnOS+rHf/te5mL7hkj8slGzwfTl6Js6yiahTLp6AlC8l/smeRcJCROJ6rE7M8e6lQbk8VlhNJXDJNekUiDRYjmBIP3KdVHg+VZ7e6hA0Np6P+U1rkN/cAH4DFaB8v+13wBCv+Xd7cpoPd/ljQ8="
+
+before_install:
+  - git submodule update --init --recursive
+
+before_script:
+  - python etc/travis-sonatype.py
+
+script: python etc/travis-build.py --settings ~/.m2/sonatype.xml
