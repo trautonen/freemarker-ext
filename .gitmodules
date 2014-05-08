@@ -1,3 +1,3 @@
 [submodule "etc"]
 	path = etc
-	url = git@github.com:trautonen/etc.git
+	url = git://github.com/trautonen/etc.git
