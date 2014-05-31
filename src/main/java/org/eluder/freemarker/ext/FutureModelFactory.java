@@ -15,11 +15,14 @@ public class FutureModelFactory implements ModelFactory {
     private final boolean failForTimeout;
 
     public FutureModelFactory() {
-        this.timeout = null;
-        this.failForTimeout = true;
+        this(true);
+    }
+    
+    public FutureModelFactory(boolean failForTimeout) {
+        this(null, failForTimeout);
     }
 
-    public FutureModelFactory(final long timeout, boolean failForTimeout) {
+    public FutureModelFactory(final Long timeout, boolean failForTimeout) {
         this.timeout = timeout;
         this.failForTimeout = failForTimeout;
     }
@@ -43,6 +46,8 @@ public class FutureModelFactory implements ModelFactory {
             } else {
                 return future.get();
             }
+        } catch (TimeoutingFuture.RuntimeTimeoutException ex) {
+            throw ex.getCause();
         } catch (ExecutionException ex) {
             throw ex.getCause();
         }
