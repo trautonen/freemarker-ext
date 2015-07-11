@@ -23,7 +23,7 @@ public class FutureModelFactory implements TypedModelFactory<Future> {
         this(null, failForTimeout);
     }
 
-    public FutureModelFactory(final Long timeout, final boolean failForTimeout) {
+    public FutureModelFactory(final Long timeout, boolean failForTimeout) {
         this.timeout = timeout;
         this.failForTimeout = failForTimeout;
     }
