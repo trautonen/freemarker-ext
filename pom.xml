@@ -87,5 +87,20 @@
         <artifactId>maven-checkstyle-plugin</artifactId>
       </plugin>
     </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>${maven.license.version}</version>
+          <configuration>
+            <excludes>
+              <exclude>**/*.ftl</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 </project>
