@@ -13,7 +13,7 @@
 
   <groupId>org.eluder.freemarker</groupId>
   <artifactId>freemarker-ext</artifactId>
-  <version>0.9-SNAPSHOT</version>
+  <version>0.9</version>
 
   <name>Freemarker Extensions</name>
   <description>Extensions for Freemarker template engine.</description>
