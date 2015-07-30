@@ -18,7 +18,7 @@ Release versions are available in [Maven Central](http://search.maven.org/).
 <dependency>
   <groupId>org.eluder.freemarker</groupId>
   <artifactId>freemarker-ext</artifactId>
-  <version>0.9</version>
+  <version>0.9.1</version>
 </dependency>
 ```
 
