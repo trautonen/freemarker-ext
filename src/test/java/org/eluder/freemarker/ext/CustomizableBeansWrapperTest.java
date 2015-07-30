@@ -100,7 +100,7 @@ public class CustomizableBeansWrapperTest {
         Configuration configuration = configuration(wrapper);
 
         Map<String, Object> model = ImmutableMap.<String, Object>builder()
-                .put("model", new DefaultingValueFuture<>(executor.submit(callable(10, 1000)), 20))
+                .put("model", new DefaultingValueFuture<Integer>(executor.submit(callable(10, 1000)), 20))
                 .build();
 
         String content = FreemarkerExtTestUtils.render(configuration, "test.ftl", model);

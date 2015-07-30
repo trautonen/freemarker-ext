@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class CustomizableBeansWrapper extends BeansWrapper {
 
-    private final LinkedHashMap<Class<?>, ModelFactory> modelFactories = new LinkedHashMap<>();
+    private final LinkedHashMap<Class<?>, ModelFactory> modelFactories = new LinkedHashMap<Class<?>, ModelFactory>();
 
     public CustomizableBeansWrapper(final Version version) {
         super(version);

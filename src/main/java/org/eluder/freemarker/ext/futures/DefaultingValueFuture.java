@@ -53,7 +53,9 @@ public class DefaultingValueFuture<T> extends DelegatingFuture<T> {
     public T get(final long timeout, final TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
         try {
             return super.get(timeout, unit);
-        } catch (TimeoutingFuture.RuntimeTimeoutException | TimeoutException ex) {
+        } catch (TimeoutingFuture.RuntimeTimeoutException ex) {
+            return defaultValue;
+        } catch (TimeoutException ex) {
             return defaultValue;
         }
     }
