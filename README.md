@@ -3,7 +3,9 @@ Freemarker extensions
 
 [![Build Status](https://img.shields.io/travis/trautonen/freemarker-ext.svg?style=flat-square)](https://travis-ci.org/trautonen/freemarker-ext)
 [![Coverage Status](https://img.shields.io/coveralls/trautonen/freemarker-ext.svg?style=flat-square)](https://coveralls.io/github/trautonen/freemarker-ext)
+[![Maven Version](https://img.shields.io/maven-central/v/org.eluder.freemarker/freemarker-ext.svg?style=flat-square)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.eluder.freemarker%22%20AND%20a%3A%22freemarker-ext%22)
 [![Dependencies Status](https://img.shields.io/versioneye/d/trautonen/freemarker-ext.svg?style=flat-square)](https://www.versioneye.com/java/org.eluder.freemarker:freemarker-ext)
+![License](https://img.shields.io/github/license/trautonen/freemarker-ext.svg?style=flat-square)
 
 [Freemarker](http://freemarker.org/) extensions library containing additions such as asynchronous
 models and automatic HTML escaping.
