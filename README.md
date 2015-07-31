@@ -69,7 +69,7 @@ anymore.
 ExecutorService executor = Executors.newFixedThreadPool(10);
 
 // create a beans wrapper that allows registering additional model factories
-CustomizableBeansWrapper wrapper = new CustomizableBeansWrapper(Configuration.getVersion())
+CustomizableObjectWrapper wrapper = new CustomizableObjectWrapper(Configuration.getVersion())
         .registerTypedModelFactory(new FutureModelFactory())
         .registerTypedModelFactory(new CallableModelFactory(executor));
 

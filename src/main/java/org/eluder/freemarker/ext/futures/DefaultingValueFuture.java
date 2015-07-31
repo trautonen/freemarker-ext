@@ -35,7 +35,7 @@ public class DefaultingValueFuture<T> extends DelegatingFuture<T> {
 
     private final T defaultValue;
 
-    public DefaultingValueFuture(final Future<T> delegate, final T defaultValue) {
+    protected DefaultingValueFuture(final Future<T> delegate, final T defaultValue) {
         super(delegate);
         this.defaultValue = defaultValue;
     }
@@ -58,5 +58,9 @@ public class DefaultingValueFuture<T> extends DelegatingFuture<T> {
         } catch (TimeoutException ex) {
             return defaultValue;
         }
+    }
+
+    public static <T> DefaultingValueFuture<T> of(final Future<T> delegate, final T defaultValue) {
+        return new DefaultingValueFuture<T>(delegate, defaultValue);
     }
 }

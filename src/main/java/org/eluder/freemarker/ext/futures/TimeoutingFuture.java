@@ -35,7 +35,7 @@ public class TimeoutingFuture<T> extends DelegatingFuture<T> {
     
     private final long timeoutMillis;
 
-    public TimeoutingFuture(final Future<T> delegate, final long timeoutMillis) {
+    protected TimeoutingFuture(final Future<T> delegate, final long timeoutMillis) {
         super(delegate);
         this.timeoutMillis = timeoutMillis;
     }
@@ -58,5 +58,9 @@ public class TimeoutingFuture<T> extends DelegatingFuture<T> {
         public RuntimeTimeoutException(final String message, final TimeoutException cause) {
             super(message, cause);
         }
+    }
+
+    public static <T> TimeoutingFuture<T> of(final Future<T> delegate, final long timeoutMillis) {
+        return new TimeoutingFuture<T>(delegate, timeoutMillis);
     }
 }

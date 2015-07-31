@@ -27,8 +27,8 @@ package org.eluder.freemarker.ext;
  */
 
 import com.google.common.collect.ImmutableMap;
-import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.Configuration;
+import freemarker.template.ObjectWrapper;
 import freemarker.template.TemplateModelException;
 import org.eluder.freemarker.ext.futures.CallableModelFactory;
 import org.eluder.freemarker.ext.futures.DefaultingValueFuture;
@@ -42,9 +42,9 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
-public class CustomizableBeansWrapperTest {
+public class CustomizableObjectWrapperTest {
 
     private ExecutorService executor;
 
@@ -64,7 +64,7 @@ public class CustomizableBeansWrapperTest {
 
     @Test
     public void unwrapFuture() throws Exception {
-        CustomizableBeansWrapper wrapper = new CustomizableBeansWrapper(FreemarkerExtTestUtils.VERSION)
+        CustomizableObjectWrapper wrapper = new CustomizableObjectWrapper(FreemarkerExtTestUtils.VERSION)
                 .registerTypedModelFactory(new FutureModelFactory());
         Configuration configuration = configuration(wrapper);
 
@@ -79,7 +79,7 @@ public class CustomizableBeansWrapperTest {
 
     @Test
     public void unwrapCallable() throws Exception {
-        CustomizableBeansWrapper wrapper = new CustomizableBeansWrapper(FreemarkerExtTestUtils.VERSION)
+        CustomizableObjectWrapper wrapper = new CustomizableObjectWrapper(FreemarkerExtTestUtils.VERSION)
                 .registerTypedModelFactory(new FutureModelFactory())
                 .registerTypedModelFactory(new CallableModelFactory(executor));
         Configuration configuration = configuration(wrapper);
@@ -95,12 +95,12 @@ public class CustomizableBeansWrapperTest {
 
     @Test
     public void unwrapDefaultingValueFuture() throws Exception {
-        CustomizableBeansWrapper wrapper = new CustomizableBeansWrapper(FreemarkerExtTestUtils.VERSION)
+        CustomizableObjectWrapper wrapper = new CustomizableObjectWrapper(FreemarkerExtTestUtils.VERSION)
                 .registerTypedModelFactory(new FutureModelFactory(500L, true));
         Configuration configuration = configuration(wrapper);
 
         Map<String, Object> model = ImmutableMap.<String, Object>builder()
-                .put("model", new DefaultingValueFuture<Integer>(executor.submit(callable(10, 1000)), 20))
+                .put("model", DefaultingValueFuture.of(executor.submit(callable(10, 1000)), 20))
                 .build();
 
         String content = FreemarkerExtTestUtils.render(configuration, "test.ftl", model);
@@ -109,8 +109,8 @@ public class CustomizableBeansWrapperTest {
     }
 
     @Test(expected = TemplateModelException.class)
-    public void unwrapFailedFuture() throws Exception {
-        CustomizableBeansWrapper wrapper = new CustomizableBeansWrapper(FreemarkerExtTestUtils.VERSION)
+    public void unwrapTimeoutedFuture() throws Exception {
+        CustomizableObjectWrapper wrapper = new CustomizableObjectWrapper(FreemarkerExtTestUtils.VERSION)
                 .registerTypedModelFactory(new FutureModelFactory(500L, true));
         Configuration configuration = configuration(wrapper);
 
@@ -123,8 +123,7 @@ public class CustomizableBeansWrapperTest {
         assertThat(content).isEqualTo("20");
     }
 
-    private Configuration configuration(BeansWrapper identity) {
-        BeansWrapper wrapper = FreemarkerExtTestUtils.createBeansWrapper(identity);
+    private Configuration configuration(ObjectWrapper wrapper) {
         Configuration configuration = new Configuration(FreemarkerExtTestUtils.VERSION);
         configuration.setObjectWrapper(wrapper);
         configuration.setClassForTemplateLoading(getClass(), "/");

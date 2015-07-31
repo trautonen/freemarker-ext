@@ -26,27 +26,27 @@ package org.eluder.freemarker.ext;
  * %[license]
  */
 
-import freemarker.ext.beans.BeansWrapper;
 import freemarker.ext.util.ModelFactory;
+import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Version;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class CustomizableBeansWrapper extends BeansWrapper {
+public class CustomizableObjectWrapper extends DefaultObjectWrapper {
 
     private final LinkedHashMap<Class<?>, ModelFactory> modelFactories = new LinkedHashMap<Class<?>, ModelFactory>();
 
-    public CustomizableBeansWrapper(final Version version) {
+    public CustomizableObjectWrapper(final Version version) {
         super(version);
     }
 
-    public CustomizableBeansWrapper registerModelFactory(final Class<?> type, final ModelFactory modelFactory) {
+    public CustomizableObjectWrapper registerModelFactory(final Class<?> type, final ModelFactory modelFactory) {
         modelFactories.put(type, modelFactory);
         return this;
     }
 
-    public CustomizableBeansWrapper registerTypedModelFactory(final TypedModelFactory<?> modelFactory) {
+    public CustomizableObjectWrapper registerTypedModelFactory(final TypedModelFactory<?> modelFactory) {
         return registerModelFactory(modelFactory.getType(), modelFactory);
     }
     
